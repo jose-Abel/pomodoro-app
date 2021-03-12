@@ -17,8 +17,8 @@ LONG_BREAK_MIN = 1
 reps = 0
 timer = None
 paused = False
-graph = "https://pixe.la/v1/users/joseabel/graphs/graph1"
-TOKEN = "AEW03030J3PMRMTPTMR3I43J2K32NMPRMPJR9RRJ"
+graph = ""
+TOKEN = ""
 studied_hours = 0
 studied_min = 0
 today = datetime.now()
@@ -44,7 +44,7 @@ def save_pixel():
     }
     #
     response = requests.post(url=graph, json=pixel_data, headers=headers)
-    success_message.config(text=f"{response.text}", fg=GREEN)
+    success_message.config(text="Success", fg=GREEN)
 
 # ---------------------------- TIMER RESET ------------------------------- #
 
@@ -125,7 +125,8 @@ title_label = Label(text="Timer", fg=GREEN, bg=YELLOW, font=(FONT_NAME, 50))
 title_label.grid(column=1, row=1)
 
 canvas = Canvas(width=200, height=224, bg=YELLOW, highlightthickness=0)
-tomato_img = PhotoImage(file="tomato.png")
+
+tomato_img = PhotoImage(file="~/PycharmProjects/Pomodoro/tomato.png")
 canvas.create_image(100, 112, image=tomato_img)
 timer_text = canvas.create_text(100, 130, text="00:00", fill="white", font=(FONT_NAME, 35, "bold"))
 canvas.grid(column=1, row=2)
@@ -152,7 +153,7 @@ check_marks.grid(column=1, row=7)
 studied_time_label = Label(fg=GREEN, bg=YELLOW, font=(FONT_NAME, 35))
 studied_time_label.grid(column=1, row=8)
 
-success_message = Label(fg=GREEN, bg=YELLOW)
+success_message = Label(fg=GREEN, bg=YELLOW, font=(FONT_NAME, 30))
 success_message.grid(column=1, row=9)
 
 
