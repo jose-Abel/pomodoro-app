@@ -23,7 +23,7 @@ studied_hours = 0
 studied_min = 0
 today = datetime.now()
 
-# ---------------------------- TIMER RESET ------------------------------- #
+# ---------------------------- SAVE PIXEL ------------------------------- #
 
 def save_pixel():
     global graph, TOKEN
@@ -46,7 +46,7 @@ def save_pixel():
     response = requests.post(url=graph, json=pixel_data, headers=headers)
     success_message.config(text="Success", fg=GREEN)
 
-# ---------------------------- TIMER RESET ------------------------------- #
+# ---------------------------- PAUSE TIMER ------------------------------- #
 
 def pause_timer():
     global paused
