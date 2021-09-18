@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from tkinter import *
 import math
 import requests
 from datetime import datetime
+import os
 
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
@@ -11,17 +12,19 @@ RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
-WORK_MIN = 1
-SHORT_BREAK_MIN = 1
-LONG_BREAK_MIN = 1
+WORK_MIN = 60
+SHORT_BREAK_MIN = 10
+LONG_BREAK_MIN = 60
 reps = 0
 timer = None
 paused = False
-graph = ""
-TOKEN = ""
+graph = "https://pixe.la/v1/users/joseabel/graphs/graph1"
+TOKEN = "AEW03030J3PMRMTPTMR3I43J2K32NMPRMPJR9RRJ"
 studied_hours = 0
 studied_min = 0
 today = datetime.now()
+duration = 0.5  # seconds
+freq = 300  # Hz
 
 # ---------------------------- SAVE PIXEL ------------------------------- #
 
@@ -56,6 +59,7 @@ def pause_timer():
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 
 def start_timer():
+    os.system('play -nq -t alsa synth {} sine {}'.format(duration, freq))
     global reps
     reps += 1
 
@@ -82,6 +86,9 @@ def count_down(count):
 
     if count_sec < 10:
         count_sec = f"0{count_sec}"
+        
+    if count_min < 10:
+        count_min = f"0{count_min}"
 
     canvas.itemconfig(timer_text, text=f"{count_min}:{count_sec}")
 
@@ -97,6 +104,10 @@ def count_down(count):
         if title_label.cget("text") == "Work":
             studied_hours += math.floor(WORK_MIN / 60)
             studied_min += math.floor(WORK_MIN % 60)
+            if WORK_MIN < 60:
+            	if studied_min == 60:
+            		studied_hours += 1
+            		studied_min = 0
 
         start_timer()
 
@@ -126,7 +137,7 @@ title_label.grid(column=1, row=1)
 
 canvas = Canvas(width=200, height=224, bg=YELLOW, highlightthickness=0)
 
-tomato_img = PhotoImage(file="~/PycharmProjects/Pomodoro/tomato.png")
+tomato_img = PhotoImage(file="~/Documents/pomodoro-app/tomato.png")
 canvas.create_image(100, 112, image=tomato_img)
 timer_text = canvas.create_text(100, 130, text="00:00", fill="white", font=(FONT_NAME, 35, "bold"))
 canvas.grid(column=1, row=2)
