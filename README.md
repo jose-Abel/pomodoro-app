@@ -3,7 +3,6 @@
 Pomodoro App build with Python and the https://pixe.la/ API. The app is built with tkinter to build GUI with Python and I add a nice feature that once you finished your studies for the day you can press the "save" button and will send a POST request to the pixel.la graph that you create with the pixela.py script.
 
 Pomodoro App
-![screenshot](./app_screenshot.png)
 
 
 Pixel.la
