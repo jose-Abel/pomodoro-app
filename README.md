@@ -4,6 +4,8 @@ Pomodoro App build with Python and the https://pixe.la/ API. The app is built wi
 
 Pomodoro App
 
+![screenshot](./app_screenshot.png)
+
 
 Pixel.la
 ![screenshot](./app_screenshot2.png)
